@@ -1,0 +1,96 @@
+@import "./make-variations.less";
+
+.make-theme(
+  @theme-color-bg-basic: #222;
+  @theme-color-fg-basic: #ddd;
+  @theme-color-bg-primary: darkblue;
+  @theme-color-fg-primary: #2b7fff;
+  @theme-color-bg-success: green;
+  @theme-color-fg-success: limegreen;
+  @theme-color-bg-warning: #fc0;
+  @theme-color-fg-warning: lightyellow;
+  @theme-color-bg-error: darkred;
+  @theme-color-fg-error: pink;
+  @theme-light-percentage: 16%;
+  @theme-lighter-percentage: 32%;
+  @theme-lightest-percentage: 48%;
+  @theme-dark-percentage: 16%;
+  @theme-darker-percentage: 32%;
+  @theme-darkest-percentage: 48%;
+  @theme-font-family: Consolas, menlo, Courier;
+  @theme-border-unit: 2px;
+  @theme-border-radius-unit: 0.25rem;
+  @theme-padding-unit: 0.5rem;
+  @theme-margin-unit: 0.5rem;
+  @theme-font-size-unit: 0.125rem;
+  @theme-default-font-size: 8;
+) {
+  .make-color-table(@bg; @fg; @categoryName;) {
+    --theme-color-bg-@{categoryName}-gradient-none: @bg;
+    --theme-color-fg-@{categoryName}-gradient-none: @fg;
+
+    --theme-color-bg-@{categoryName}-gradient-dark: darken(@bg, @theme-dark-percentage, relative);
+    --theme-color-bg-@{categoryName}-gradient-darker: darken(@bg, @theme-darker-percentage, relative);
+    --theme-color-bg-@{categoryName}-gradient-darkest: darken(@bg, @theme-darkest-percentage, relative);
+
+    --theme-color-fg-@{categoryName}-gradient-dark: darken(@fg, @theme-dark-percentage, relative);
+    --theme-color-fg-@{categoryName}-gradient-darker: darken(@fg, @theme-darker-percentage, relative);
+    --theme-color-fg-@{categoryName}-gradient-darkest: darken(@fg, @theme-darkest-percentage, relative);
+
+    --theme-color-bg-@{categoryName}-gradient-light: lighten(@bg, @theme-light-percentage, relative);
+    --theme-color-bg-@{categoryName}-gradient-lighter: lighten(@bg, @theme-lighter-percentage, relative);
+    --theme-color-bg-@{categoryName}-gradient-lightest: lighten(@bg, @theme-lightest-percentage, relative);
+
+    --theme-color-fg-@{categoryName}-gradient-light: lighten(@fg, @theme-light-percentage, relative);
+    --theme-color-fg-@{categoryName}-gradient-lighter: lighten(@fg, @theme-lighter-percentage, relative);
+    --theme-color-fg-@{categoryName}-gradient-lightest: lighten(@fg, @theme-lightest-percentage, relative);
+
+    --theme-color-bg-@{categoryName}: var(~'--theme-color-bg-@{categoryName}-gradient-none');
+    --theme-color-fg-@{categoryName}: var(~'--theme-color-fg-@{categoryName}-gradient-none');
+
+    .make-gradient-class(@gradient;) {
+      .@{gradient} {
+        --theme-color-bg-@{categoryName}: var(~'--theme-color-bg-@{categoryName}-gradient-@{gradient}');
+        --theme-color-fg-@{categoryName}: var(~'--theme-color-fg-@{categoryName}-gradient-@{gradient}');
+      }
+      .bg-@{gradient} {
+        --theme-color-bg-@{categoryName}: var(~'--theme-color-bg-@{categoryName}-gradient-@{gradient}');
+      }
+      .fg-@{gradient} {
+        --theme-color-fg-@{categoryName}: var(~'--theme-color-fg-@{categoryName}-gradient-@{gradient}');
+      }
+    }
+    .make-gradient-class(light);
+    .make-gradient-class(lighter);
+    .make-gradient-class(lightest);
+    .make-gradient-class(dark);
+    .make-gradient-class(darker);
+    .make-gradient-class(darkest);
+
+    .@{categoryName} {
+      --theme-color-bg: var(~'--theme-color-bg-@{categoryName}');
+      --theme-color-fg: var(~'--theme-color-fg-@{categoryName}');
+    }
+  }
+  .make-color-table(@theme-color-bg-basic, @theme-color-fg-basic, basic);
+  .make-color-table(@theme-color-bg-primary, @theme-color-fg-primary, primary);
+  .make-color-table(@theme-color-bg-success, @theme-color-fg-success, success);
+  .make-color-table(@theme-color-bg-warning, @theme-color-fg-warning, warning);
+  .make-color-table(@theme-color-bg-error, @theme-color-fg-error, error);
+
+  --theme-color-bg: var(--theme-color-bg-basic);
+  --theme-color-fg: var(--theme-color-fg-basic);
+
+  --theme-font-family: @theme-font-family;
+
+  --theme-padding-unit: @theme-padding-unit;
+  --theme-margin-unit: @theme-margin-unit;
+  --theme-border-unit: @theme-border-unit;
+  --theme-border-radius-unit: @theme-border-radius-unit;
+  --theme-font-size-unit: @theme-font-size-unit;
+  --theme-padding: var(--theme-padding-unit);
+  --theme-margin: var(--theme-margin-unit);
+  --theme-border: var(--theme-border-unit);
+  --theme-border-radius: var(--theme-border-radius-unit);
+  --theme-font-size: calc(var(--theme-font-size-unit) * @theme-default-font-size);
+}

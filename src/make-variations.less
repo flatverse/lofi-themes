@@ -1,0 +1,175 @@
+.linear-variation(
+  @property;
+  @variable;
+  @calc-scalar;
+  @operator;
+) {
+  @{property}: calc(var(@variable) e(@operator) @calc-scalar);
+}
+
+.make-variations(
+  @selector-base;
+  @property;
+  @variable;
+  @scalar-list;
+  @operator; // i.e. \*
+  @base-block: {};
+) {
+  each(@scalar-list, {
+    // @val-selector: replace(@value, ".", "_", "g");
+    @val-selector: @value;
+    .@{selector-base}-@{val-selector} {
+      .linear-variation(@property, @variable, @value, @operator);
+      @base-block();
+    }
+  });
+}
+
+.make-border-radius-variations() {
+  .make-variations(
+    r,
+    --theme-border-radius,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-radius: var(--theme-border-radius);
+    }
+  );
+
+  // set left radius
+  .make-variations(
+    rl,
+    --theme-border-radius-top-left,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-bottom-left-radius: var(--theme-border-radius-top-left) !important;
+    }
+  );
+  .make-variations(
+    rl,
+    --theme-border-radius-bottom-left,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-top-left-radius: var(--theme-border-radius-bottom-left) !important;
+    }
+  );
+
+  // set top left radius
+  .make-variations(
+    rtl,
+    --theme-border-radius-top-left,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-top-left-radius: var(--theme-border-radius-top-left) !important;
+    }
+  );
+
+  // set top radius
+  .make-variations(
+    rt,
+    --theme-border-radius-top-left,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-top-left-radius: var(--theme-border-radius-top-left) !important;
+    }
+  );
+  .make-variations(
+    rt,
+    --theme-border-radius-top-right,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-top-right-radius: var(--theme-border-radius-top-right) !important;
+    }
+  );
+
+  // set top right radius
+  .make-variations(
+    rtr,
+    --theme-border-radius-top-right,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-top-right-radius: var(--theme-border-radius-top-right) !important;
+    }
+  );
+
+  // set right radius
+  .make-variations(
+    rr,
+    --theme-border-radius-top-right,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-top-right-radius: var(--theme-border-radius-top-right) !important;
+    }
+  );
+  .make-variations(
+    rr,
+    --theme-border-radius-bottom-right,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-bottom-right-radius: var(--theme-border-radius-bottom-right) !important;
+    }
+  );
+
+  // bottom right
+  .make-variations(
+    rbr,
+    --theme-border-radius-bottom-right,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-bottom-right-radius: var(--theme-border-radius-bottom-right) !important;
+    }
+  );
+
+  // bottom
+  .make-variations(
+    rb,
+    --theme-border-radius-bottom-right,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-bottom-right-radius: var(--theme-border-radius-bottom-right) !important;
+    }
+  );
+  .make-variations(
+    rb,
+    --theme-border-radius-bottom-left,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-bottom-left-radius: var(--theme-border-radius-bottom-left) !important;
+    }
+  );
+
+  // bottom left
+  .make-variations(
+    rbl,
+    --theme-border-radius-bottom-left,
+    --theme-border-radius-unit,
+    0 1 2 3 4 5 6 7 8 10 12 14 16,
+    '*',
+    {
+      border-bottom-left-radius: var(--theme-border-radius-bottom-left) !important;
+    }
+  );
+}
