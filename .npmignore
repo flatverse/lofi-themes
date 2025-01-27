@@ -1,0 +1,6 @@
+src
+example
+.parcel-cache
+dist/*.js
+dist/*.ts
+dist/*.css

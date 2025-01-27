@@ -1,13 +1,13 @@
 {
   "name": "lofi-themes",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "lofi css themes",
   "license": "ISC",
   "author": "Cody Thompson",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/lit/index.ts",
   "scripts": {
-    "build": "mkdir -p dist && lessc src/index.less dist/lofi-themes.css",
+    "build": "mkdir -p dist && lessc src/index.less dist/css/lofi-themes.css",
     "dev": "parcel example/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
