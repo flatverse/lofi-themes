@@ -7,7 +7,7 @@
   "type": "module",
   "main": "dist/lit/index.ts",
   "scripts": {
-    "build": "mkdir -p dist && lessc src/index.less dist/css/lofi-themes.css",
+    "build": "./build.zsh",
     "dev": "parcel example/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,8 @@
     "@parcel/transformer-less": "^2.13.3",
     "less": "^4.2.2",
     "parcel": "^2.13.3"
+  },
+  "peerDependencies": {
+    "lit": "^3.2.1"
   }
 }
