@@ -4,3 +4,4 @@ example
 dist/*.js
 dist/*.ts
 dist/*.css
+*.zsh
