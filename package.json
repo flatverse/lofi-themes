@@ -1,12 +1,13 @@
 {
   "name": "lofi-themes",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "lofi css themes",
   "license": "ISC",
   "author": "Cody Thompson",
   "type": "module",
   "main": "dist/lit/lofi-themes.js",
   "scripts": {
+    "prepublish": "build",
     "build": "./build.zsh",
     "dev": "parcel example/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
