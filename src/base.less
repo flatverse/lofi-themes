@@ -1,3 +1,9 @@
+@import "./lofi-wrapper.less";
+
+/*******************************************************************************
+ * base styles
+ **************************************************************************** */
+
 .destyle {
   padding: 0;
   margin: 0;
@@ -14,105 +20,108 @@
 }
 
 .lofi {
-
   /*
-   * remove annoying built in styling
+   * base font stuff
    */
-  button, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
-    .destyle();
-  }
-
-
-  /*
-   * spacing and sizing variations (i.e. p-[0-8], m[0-8], b[0-8], r[0-8])
-   */
-
-  .make-variations(
-    p,
-    --theme-padding,
-    --theme-padding-unit,
-    0 1 2 3 4 5 6 7 8 10 12 14 16,
-    '*',
-    {
-      padding: var(--theme-padding);
-    }
-  );
-  .make-variations(
-    m,
-    --theme-margin,
-    --theme-margin-unit,
-    0 1 2 3 4 5 6 7 8 10 12 14 16,
-    '*',
-    {
-      margin: var(--theme-margin);
-    }
-  );
-  .make-variations(
-    b,
-    --theme-border,
-    --theme-border-unit,
-    0 1 2 3 4 5 6 7 8 10 12 14 16,
-    '*',
-    {
-      border: var(--theme-border) solid;
-    }
-  );
-  .make-border-radius-variations();
-
-
-  /*
-  * colors and shading
-  */
-
-  .bg {
-    background-color: var(--theme-color-bg);
-  }
-  .fg {
-    color: var(--theme-color-fg);
-  }
-  .bg.inverted {
-    background-color: var(--theme-color-fg);
-  }
-  .fg.inverted {
-    color: var(--theme-color-bg);
-  }
-  .shaded {
-    .bg();
-    .fg();
-  }
-  .shaded.inverted {
-    .bg.inverted();
-    .fg.inverted();
-  }
-
-
-  /*
-   * text stuff
-   */
-
-  .make-variations(
-    f,
-    --theme-font-size,
-    --theme-font-size-unit,
-    0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 36 40 44 48 56 64,
-    '*',
-    {
-      font-size: var(--theme-font-size);
-    }
-  );
   font-size: var(--theme-font-size);
   font-family: var(--theme-font-family);
 
   /*
-   * component - ish stuff
-   */
-
-  .container {
-    .p-2();
-    .r-1();
-    .shaded();
-  }
-  .container.inverted {
-    .shaded.inverted();
-  }
+  * remove annoying built in styling
+  */
+  .lofi(button h1 h2 h3 h4 h5 h6 p ul ol li, {
+    .destyle();
+  });
 }
+
+
+/*
+  * spacing and sizing variations (i.e. p-[0-8], m[0-8], b[0-8], r[0-8])
+  */
+.make-variations(
+  p,
+  --theme-padding,
+  --theme-padding-unit,
+  0 1 2 3 4 5 6 7 8 10 12 14 16,
+  '*',
+  {
+    padding: var(--theme-padding);
+  }
+);
+.make-variations(
+  m,
+  --theme-margin,
+  --theme-margin-unit,
+  0 1 2 3 4 5 6 7 8 10 12 14 16,
+  '*',
+  {
+    margin: var(--theme-margin);
+  }
+);
+.make-variations(
+  b,
+  --theme-border,
+  --theme-border-unit,
+  0 1 2 3 4 5 6 7 8 10 12 14 16,
+  '*',
+  {
+    border: var(--theme-border) solid;
+  }
+);
+.make-border-radius-variations();
+
+
+/*
+* colors and shading
+*/
+
+.bg {
+  background-color: var(--theme-color-bg);
+}
+.fg {
+  color: var(--theme-color-fg);
+}
+.bg.inverted {
+  background-color: var(--theme-color-fg);
+}
+.fg.inverted {
+  color: var(--theme-color-bg);
+}
+.shaded {
+  .bg();
+  .fg();
+}
+.shaded.inverted {
+  .bg.inverted();
+  .fg.inverted();
+}
+
+
+/*
+  * text stuff
+  */
+
+.make-variations(
+  f,
+  --theme-font-size,
+  --theme-font-size-unit,
+  0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 36 40 44 48 56 64,
+  '*',
+  {
+    font-size: var(--theme-font-size);
+  }
+);
+
+/*
+  * component - ish stuff
+  */
+
+.lofi('.container', {
+  .p-2();
+  .r-1();
+  .shaded();
+});
+
+.lofi('.container.inverted', {
+  .shaded.inverted();
+});

@@ -1,0 +1,22 @@
+/* adapted from https://stackoverflow.com/q/25306437/2453932 */
+.lofi(@selectors, @body, @parent-class: '') {
+  @length: length(@selectors);
+
+  .inner(@index) when (@index = 1) {
+    @selector: extract(@selectors, 1);
+    @selector-list: ~'@{parent-class} @{selector}, @{selector}.lofi';
+    .inner(2, @selector-list);
+  }
+  .inner(@index, @selector-list) when (@index =< @length) {
+
+    @selector: extract(@selectors, @index);
+    @new-selector-list: ~'@{selector-list}, @{parent-class} @{selector}, @{selector}.lofi';
+    .inner(@index+1, @new-selector-list);
+  }
+  .inner(@index, @selector-list) when (@index > length(@selectors)) {
+    @{selector-list} {
+      @body();
+    }
+  }
+  .inner(1);
+}
